@@ -13,6 +13,17 @@ function Expenses(props) {
    const filteredExpenses = props.items.filter(expense => {
      return expense.date.getFullYear().toString() === filteredYear;
    })
+   let expensesContent = <p> no expenses found </p> 
+     if (filteredExpenses.length > 0) {
+      expensesContent = filteredExpenses.map((expense) => (
+        <ExpenseItem
+          title={expense.title}
+          amount={expense.amount}
+          date={expense.date}
+          key={expense.id}
+        />
+      ))
+     }
   /*const filteredCategory = props.items.reduce (
       (acc, displayedDate) => 
        acc.includes(displayedDate.selectedYear) ? acc : acc.concat(displayedDate.selectedYear),
@@ -26,16 +37,7 @@ function Expenses(props) {
           selected={filteredYear}
           onChangeFilter={filterChangeHandler}
         />
-        {filteredExpenses.length === 0 && <p> no expenses found </p>}
-        {filteredExpenses.length > 0 &&
-        filteredExpenses.map((expense) => (
-          <ExpenseItem
-            title={expense.title}
-            amount={expense.amount}
-            date={expense.date}
-            key={expense.id}
-          />
-        ))} 
+       {expensesContent}
       </Card>
     </div>
   );
@@ -57,4 +59,14 @@ export default Expenses
          <ExpenseItem title={title} amount={amount} date={date} key={id}  />
      ))}
 
+ another code for reference  {filteredExpenses.length === 0 && <p> no expenses found </p>}
+        {filteredExpenses.length > 0 &&
+        filteredExpenses.map((expense) => (
+          <ExpenseItem
+            title={expense.title}
+            amount={expense.amount}
+            date={expense.date}
+            key={expense.id}
+          />
+        ))} 
 */
