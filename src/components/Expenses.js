@@ -1,31 +1,39 @@
-import { useState } from 'react';
-import ExpenseItem from './ExpenseItem';
-import Card from './Card';
-import ExpensesFilter from './ExpensesFilter';
-import '../stylesheets/Expenses.css';
+import { useState } from "react";
+import ExpenseItem from "./ExpenseItem";
+import Card from "./Card";
+import ExpensesFilter from "./ExpensesFilter";
+import "../stylesheets/Expenses.css";
 
 function Expenses(props) {
-  const [filteredYear, setFilteredYear] = useState('2020');
+  const [filteredYear, setFilteredYear] = useState("2020");
 
-  const filterChangeHandler = selectedYear => {
+  const filterChangeHandler = (selectedYear) => {
     setFilteredYear(selectedYear);
   };
 
   return (
     <div>
-    <Card className="expenses">
-    <ExpensesFilter selected={filteredYear} onChangeFilter={filterChangeHandler} />
-    {props.items.map(({ title, amount, date, id}) => (
-         <ExpenseItem title={title} amount={amount} date={date} key={id}  />
-     ))}
-    </Card>
+      <Card className="expenses">
+        <ExpensesFilter
+          selected={filteredYear}
+          onChangeFilter={filterChangeHandler}
+        />
+        {props.items.map((expense) => (
+          <ExpenseItem
+            title={expense.title}
+            amount={expense.amount}
+            date={expense.date}
+            key={expense.id}
+          />
+        ))}
+      </Card>
     </div>
   );
 }
 
 export default Expenses;
 
-    /* return (
+/* return (
         <div className="expenses">
              {expenses.map(({ title, amount, date, id}) => (
          <ExpenseItem title={title} amount={amount} date={date} key={id}  />
@@ -33,4 +41,10 @@ export default Expenses;
         </div>
     )
 }
-export default Expenses */
+export default Expenses 
+
+{props.items.map(({ title, amount, date, id}) => (
+         <ExpenseItem title={title} amount={amount} date={date} key={id}  />
+     ))}
+
+*/
